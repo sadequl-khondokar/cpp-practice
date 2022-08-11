@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-class shape
+class Shape
 {
 protected:
     float length;
@@ -13,11 +13,11 @@ public:
         length = lt;
         height = ht;
     }
-    shape()
+    Shape()
     {
         cout << "Default Constructor Shape." << endl;
     }
-    shape(float lt, float ht)
+    Shape(float lt, float ht)
     {
         length = lt;
         height = ht;
@@ -32,24 +32,24 @@ public:
         cout << "Length is" << length;
         cout << "Height is" << height;
     }
-    ~shape()
+    ~Shape()
     {
         cout << "Destructor of shape." << endl;
     }
 };
 
-class rectangle
+class Rectangle
 {
 protected:
     float length;
     float height;
 
 public:
-    rectangle()
+    Rectangle()
     {
         cout << "Empty Constructor  Rectangle." << endl;
     }
-    rectangle(float x, float y)
+    Rectangle(float x, float y)
     {
         length = x;
         height = y;
@@ -59,20 +59,20 @@ public:
     {
         return height * length;
     }
-    ~rectangle()
+    ~Rectangle()
     {
         cout << "Destructor of rectangle." << endl;
     }
 };
 
-class square : public shape, public rectangle
+class Square : public Shape, public Rectangle
 {
 public:
-    square()
+    Square()
     {
         cout << "Empty Constructor Square." << endl;
     }
-    square(float a, float b) : shape(a, b), rectangle(a, b)
+    Square(float a, float b) : Shape(a, b), Rectangle(a, b)
     {
         cout << "Parameterized Constructor  Square." << endl;
     }
@@ -80,7 +80,7 @@ public:
     {
         return getheight() * getheight();
     }
-    ~square()
+    ~Square()
     {
         cout << "Destructor  of Square." << endl;
     }
@@ -88,12 +88,12 @@ public:
 
 int main()
 {
-    square sq;
-    square sq1(10.5, 14.5);
+    Square sq;
+    Square sq1(10.5, 14.5);
     cout << sq1.SquareArea() << endl;
 
     sq1.setData(5.5, 9.6);
     sq1.ShowDetails();
-    square sq2(7.3, 3.8);
+    Square sq2(7.3, 3.8);
     cout << sq2.rectanglearea() << endl;
 }
