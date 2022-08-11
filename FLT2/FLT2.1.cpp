@@ -1,95 +1,121 @@
 #include <iostream>
 using namespace std;
-class shape
+class Shape
 {
 protected:
     float length;
     float height;
 
 public:
+    Shape()
+    {
+        length = 0;
+        height = 0;
+        cout << "Shape: Default Constructor." << endl;
+    }
+    Shape(float lt, float ht)
+    {
+        length = lt;
+        height = ht;
+        cout << "Shape: Parameterized Constructor." << endl;
+    }
     void showDetails()
     {
-        cout << "Length" << length << endl;
-        cout << "Height" << height << endl;
+        cout << "Length: " << length << " Height: " << height << endl;
     }
     void setData(float lt, float ht)
     {
         length = lt;
         height = ht;
     }
-    shape()
+
+    ~Shape()
     {
-        cout << "Default Constructor Shape." << endl;
-    }
-    shape(float lt, float ht)
-    {
-        length = lt;
-        height = ht;
-        cout << "Parameterized Constructor Shape." << endl;
-    }
-    ~shape()
-    {
-        cout << "Destructor of Shape" << endl;
+        cout << "Shape: Destructor" << endl;
     }
 };
-class triangle : public shape
+
+class Triangle : public Shape
 {
-protected:
+
+private:
+    // Because Triagle will not be inherited by any other class
     float base;
 
 public:
-    triangle()
+    Triangle()
     {
-        cout << "Default Constructor Triangle." << endl;
+        cout << "Triangle: Default Constructor." << endl;
     }
-    triangle(float bs, float x, float y) : shape(x, y)
+    Triangle(float base, float lenght, float height) : Shape(lenght, height)
     {
-        base = bs;
-        cout << "Parameterized Constructor Triangle." << endl;
+        this->base = base;
+        cout << "Triangle: Parameterized Constructor." << endl;
     }
     float triangleArea()
     {
         return 0.5 * base * height;
     }
-    ~triangle()
+    ~Triangle()
     {
-        cout << "Destructor of triangle" << endl;
+        cout << "Triangle: Destructor." << endl;
     }
 };
-class square : public shape
+
+class Square : public Shape
 {
 
 public:
-    square()
+    Square()
     {
-        cout << "default Constructor Square." << endl;
+        cout << "Square: Default Constructor." << endl;
     }
-    square(float a, float b) : shape(a, b)
+    Square(float height) : Shape(height, height)
     {
-
-        cout << "Parameterized Constructor Square." << endl;
+        cout << "Square: Parameterized Constructor." << endl;
     }
     float squareArea()
     {
         return height * height;
     }
-    ~square()
+    ~Square()
     {
-        cout << "Destructor of square" << endl;
+        cout << "Square: Destructor" << endl;
     }
 };
 
 int main()
 {
-    triangle tr;
-    triangle t1(10.5, 5.5, 16.7);
-    cout << t1.triangleArea() << endl;
-    t1.setData(5.6, 25.8);
+    Triangle tr;
+    // Shape: Default Constructor.
+    // Triangle: Default Constructor.
+    Triangle t1(10.5, 5.5, 16.7);
+    // Shape: Parameterized Constructor.
+    // Triangle: Parameterized Constructor.
     t1.showDetails();
+    // Length: 5.5 Height: 16.7
+    cout << "Triangle: Area: " << t1.triangleArea() << endl;
+    // Triangle: Area: 87.675
+    t1.setData(5.6, 25.8);
+    // 
+    t1.showDetails();
+    // Length: 5.6 Height: 25.8
 
-    square s;
-    square s1(33.5, 7.9);
-    s1.setData(36.7, 9.9);
+    Square s;
+    // Shape: Default Constructor.
+    // Square: Default Constructor.
+    Square s1(33.5);
+    // Shape: Parameterized 
+    // Square: Para
     s1.showDetails();
-    cout << s1.squareArea() << endl;
+    // Length: 33.5 Height: 33.5
+    s1.setData(36.7, 9.9);
+    //
+    s1.showDetails();
+    // Length: 36.7 Height: 9.9
+    cout << "Square: Area: " << s1.squareArea() << endl;
+    //Square: A 9.9*9.
+
+    // Last in first out 
+    
 }
